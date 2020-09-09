@@ -1,0 +1,12 @@
+@import url(./_hidden/card__btn-delete_hidden.css);
+
+.card__btn-delete {
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  right: 15px;
+  top: 18px;
+  background: bottom;
+  outline: none;
+}

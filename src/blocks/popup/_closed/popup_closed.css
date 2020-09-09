@@ -1,0 +1,5 @@
+.popup_closed {
+  visibility: hidden;
+  transition: opacity .5s linear;
+  opacity: 0;
+}

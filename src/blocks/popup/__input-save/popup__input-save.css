@@ -1,0 +1,39 @@
+@import url(./_inactive/popup__input-save_inactive.css);
+
+.popup__input-save {
+  border-radius: 2px;
+  border: none;
+	background-color: #000;
+	width: 358px;
+	height: 50px;
+  margin: 0 auto 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+.popup__input-save:hover {
+  opacity: .8;
+  transition: opacity 200ms linear;
+}
+
+@media screen and (max-width: 1050px) {
+  .popup__input-save {
+    width: 281px;
+    min-height: 45px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .popup__input-save {
+    margin-bottom: 25px;
+    width: 235px;
+    min-height: 35px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .popup__input-save {
+    margin-bottom: 10px;
+    width: 200px;
+  }
+}
