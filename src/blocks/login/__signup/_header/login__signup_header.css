@@ -1,0 +1,15 @@
+.login__signup_header {
+    font-size: 18px;
+    margin-top: 6px;
+    width: 114px;
+    line-height: 22px;
+    height: 22px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease 0s; 
+}
+
+.login__signup_header:hover {
+    opacity: .8;
+    transform: scale(1.03); 
+}

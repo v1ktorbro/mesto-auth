@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect, Switch, Route } from 'react-router-dom'
 import Header from './Header.js'
 import Footer from './Footer.js'
 import Main from './Main.js'
@@ -10,10 +11,12 @@ import EditAvatarPopup from './EditAvatarPopup.js'
 import AddPlacePopup from './AddPlacePopup.js'
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
 import { InitialCardsContext } from '../contexts/InitialCardsContext.js'
+import Login from './Login'
 
 
 function App() {
 
+  const [loggedIn, setLoggedIn] = React.useState(false)
   //информация о текущем пользователе
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -117,26 +120,36 @@ function App() {
 
   return (
     <>
-      <CurrentUserContext.Provider value={currentUser}>
-      <InitialCardsContext.Provider value={cards}>
-        <Header />
-        <Main 
-          onEditProfile={handleEditProfileClick} 
-          onAddPlace={handleAddPlaceClick} 
-          onEditAvatar={handleEditAvatarClick} 
-          onCardClick={handleCardClick}
-          cards={cards}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-        />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-        <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      </InitialCardsContext.Provider>
-      </CurrentUserContext.Provider>
+      <Switch>
+        <Route path='/sign-in'>
+          <Login />
+        </Route>
+        <Route path='/sign-up'>
+        </Route>
+        <Route exact path='/' >
+          { <Redirect to={`/${ loggedIn ? '' : 'sign-in' }`} /> }
+        </Route>
+        <CurrentUserContext.Provider value={currentUser}>
+        <InitialCardsContext.Provider value={cards}>
+          <Header />
+          <Main 
+            onEditProfile={handleEditProfileClick} 
+            onAddPlace={handleAddPlaceClick} 
+            onEditAvatar={handleEditAvatarClick} 
+            onCardClick={handleCardClick}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
+          <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+          <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+          <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+          <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
+          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        </InitialCardsContext.Provider>
+        </CurrentUserContext.Provider>
         <Footer />
+      </Switch>
     </>
   );
 }
