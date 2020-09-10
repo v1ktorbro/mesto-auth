@@ -5,7 +5,20 @@
   background-size: contain;
   background-repeat: no-repeat;
   font-size: 0;
-  margin-bottom: 3.17vw; /* or 40.6px */
+  margin-bottom: 40px; 
+}
+
+@media screen and (max-width: 650px) {
+  .header__logo {
+    width: 97px;
+    height: 22px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .header__logo {
+    margin-bottom: 32px;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -13,7 +26,6 @@
     width: 104px;
     height: 25px;
     margin-left: 8.5vw;
-    margin-bottom: 10vw;
   }
 }
 
