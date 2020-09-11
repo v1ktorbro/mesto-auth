@@ -13,6 +13,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
 import { InitialCardsContext } from '../contexts/InitialCardsContext.js'
 import Login from './Login'
 import Register from './Register'
+import InfoTooltip from './InfoTooltip'
 
 
 function App() {
@@ -123,7 +124,8 @@ function App() {
     <>
       <Switch>
         <Route path='/sign-in'>
-          <Login />
+          {/* <Login /> */}
+          <InfoTooltip />
         </Route>
         <Route path='/sign-up'>
           <Register />

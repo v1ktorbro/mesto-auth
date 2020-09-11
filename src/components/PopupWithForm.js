@@ -1,24 +1,20 @@
 import React from 'react'
 
 function PopupWithForm ({
-                          title, 
-                          name, 
-                          inputSignature, 
-                          children, 
-                          isOpen, 
-                          onClose, 
-                          onSubmit
+                          title, name, inputSignature, 
+                          children, isOpen, onClose, 
+                          onSubmit, form
                         }) 
 {
     return (
-        <section className={`popup-${name} popup ${isOpen ? '' : 'popup_closed' }`}>
+        <section className={`popup-${name} popup ${!isOpen && 'popup_closed' }`}>
         <form name={name} className="popup__container" onSubmit={onSubmit} noValidate>
           <span className="popup__close" onClick={onClose} ></span>
-          <h2 className="popup__title">{title}</h2>
+          { form && <h2 className="popup__title">{title}</h2> }
           {children}
-          <button type="submit" className="popup__input-save">
+          { form && <button type="submit" className="popup__input-save">
             <p className="popup__text-color">{inputSignature}</p>
-          </button>
+          </button> }
         </form>
        </section>
     )
