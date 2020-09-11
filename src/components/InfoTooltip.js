@@ -7,7 +7,7 @@ function InfoTooltip () {
     return (
         <PopupWithForm 
             name='tool-tip'
-            form={false}
+            isForm={false}
             isOpen={true}
         >
             <img className='tool-tip__image' src={loginSuccess} alt='картинка о успешной (или нет) регистрации' />

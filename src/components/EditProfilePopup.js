@@ -29,6 +29,7 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
             isOpen={isOpen} 
             onClose={onClose}
             onSubmit={handleSubmit}
+            isForm={true}
         >
             <input 
                 name="name" 

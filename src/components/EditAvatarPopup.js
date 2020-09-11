@@ -21,6 +21,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
             isOpen={isOpen} 
             onClose={onClose}
             onSubmit={handleSubmit} 
+            isForm={true}
         >
             <input 
                 name="avatar" 

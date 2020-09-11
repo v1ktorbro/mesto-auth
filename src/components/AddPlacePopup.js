@@ -19,7 +19,8 @@ function AddPlacePopup({isOpen, onClose, onAddPlace}) {
             inputSignature="Создать" 
             isOpen={isOpen} 
             onClose={onClose}
-            onSubmit={handleSubmit} 
+            onSubmit={handleSubmit}
+            isForm={true} 
         >
             <input 
                 name="name" 
