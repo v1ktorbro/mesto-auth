@@ -12,6 +12,7 @@ import AddPlacePopup from './AddPlacePopup.js'
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
 import { InitialCardsContext } from '../contexts/InitialCardsContext.js'
 import Login from './Login'
+import Register from './Register'
 
 
 function App() {
@@ -125,6 +126,7 @@ function App() {
           <Login />
         </Route>
         <Route path='/sign-up'>
+          <Register />
         </Route>
         <Route exact path='/' >
           { <Redirect to={`/${ loggedIn ? '' : 'sign-in' }`} /> }
