@@ -120,16 +120,20 @@ function App() {
     })
   }
 
+  function handleLogin() {
+    setLoggedIn(true)
+  }
+  
   return (
     <>
       <Switch>
         <Route path='/sign-in'>
-          <Login />
+          <Login handleLogin={handleLogin} />
         </Route>
         <Route path='/sign-up'>
           <Register />
         </Route>
-        <ProtectedRoute path='/' loggedIn={loggedIn}  />
+        <ProtectedRoute path='/' loggedIn={loggedIn}  Component={
         <CurrentUserContext.Provider value={currentUser}>
         <InitialCardsContext.Provider value={cards}>
           <Header />
@@ -149,6 +153,7 @@ function App() {
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </InitialCardsContext.Provider>
         </CurrentUserContext.Provider>
+        } />
         <Footer />
       </Switch>
     </>
