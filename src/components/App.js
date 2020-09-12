@@ -129,9 +129,7 @@ function App() {
         <Route path='/sign-up'>
           <Register />
         </Route>
-        <Route exact path='/' >
-          { <Redirect to={`/${ loggedIn ? '' : 'sign-in' }`} /> }
-        </Route>
+        <ProtectedRoute path='/' loggedIn={loggedIn}  />
         <CurrentUserContext.Provider value={currentUser}>
         <InitialCardsContext.Provider value={cards}>
           <Header />
