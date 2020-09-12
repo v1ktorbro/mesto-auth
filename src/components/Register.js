@@ -6,10 +6,11 @@ import * as auth from './auth'
 function Register () {
     const emailRef = React.useRef('');
     const passwordRef = React.useRef('');
-    const history = useHistory()
+    const history = useHistory();
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        let data = {
+        const data = {
             email: emailRef.current.value,
             password: passwordRef.current.value
         }
