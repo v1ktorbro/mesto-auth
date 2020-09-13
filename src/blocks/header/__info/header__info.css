@@ -1,0 +1,7 @@
+.header__info {
+    display: flex;
+    margin-top: 6px;
+    font-size: 18px;
+    line-height: 22px;
+    height: 22px;
+  }

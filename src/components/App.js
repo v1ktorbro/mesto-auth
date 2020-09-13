@@ -19,7 +19,7 @@ import InfoTooltip from './InfoTooltip'
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
   const [registerSuccess, setRegisterSuccess] = React.useState(false);
   //информация о текущем пользователе
   const [currentUser, setCurrentUser] = React.useState({});
@@ -138,7 +138,12 @@ function App() {
         <ProtectedRoute path='/' loggedIn={loggedIn}  Component={
         <CurrentUserContext.Provider value={currentUser}>
         <InitialCardsContext.Provider value={cards}>
-          <Header />
+          <Header >
+            <div className='header__info' >
+              <p className='header__email' >Email</p>
+              <button className='header__sign-out' >Выйти</button>
+            </div>
+          </Header>
           <Main 
             onEditProfile={handleEditProfileClick} 
             onAddPlace={handleAddPlaceClick} 
