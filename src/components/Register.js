@@ -2,23 +2,30 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import Header from './Header'
 import * as auth from './auth'
+import InfoTooltip from './InfoTooltip';
 
-function Register () {
+function Register ({handleLogin, setRegisterSuccess}) {
     const emailRef = React.useRef('');
     const passwordRef = React.useRef('');
+    const [error, setError] = React.useState(false);
     const history = useHistory();
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
+        setError(false);
         const data = {
             email: emailRef.current.value,
             password: passwordRef.current.value
         }
         auth.register(data).then((res) => {
             if (res) {
-                return history.push('/sign-in')
+                handleLogin();
+                history.push('/my-profile');
+                setRegisterSuccess(true);
+                return 
             }
-            return console.log('message: Что-то пошло не так. Пожалуйста, повторите запрос')
+            setError(true)
+            return console.log("Некорректно заполнено одно из полей")
         })
 
     };
@@ -42,6 +49,7 @@ function Register () {
                     </div>
                 </form>
             </section>
+            { error && <InfoTooltip success={false} /> }
         </main>
         </>
     );

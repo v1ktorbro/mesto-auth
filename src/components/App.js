@@ -14,11 +14,13 @@ import { InitialCardsContext } from '../contexts/InitialCardsContext.js'
 import Login from './Login'
 import Register from './Register'
 import ProtectedRoute from './ProtectedRoute'
+import InfoTooltip from './InfoTooltip'
 
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(false)
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [registerSuccess, setRegisterSuccess] = React.useState(false);
   //информация о текущем пользователе
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -131,7 +133,7 @@ function App() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route path='/sign-up'>
-          <Register />
+          <Register handleLogin={handleLogin} setRegisterSuccess={setRegisterSuccess} />
         </Route>
         <ProtectedRoute path='/' loggedIn={loggedIn}  Component={
         <CurrentUserContext.Provider value={currentUser}>
@@ -151,6 +153,7 @@ function App() {
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
           <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+          { registerSuccess && <InfoTooltip success={true} /> }
         </InitialCardsContext.Provider>
         </CurrentUserContext.Provider>
         } />
