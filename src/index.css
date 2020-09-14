@@ -12,3 +12,5 @@
 @import url(./blocks/btn-image/btn-image.css);
 @import url(./blocks/login/login.css);
 @import url(./blocks/tool-tip/tool-tip.css);
+@import url(./blocks/burger-menu/burger-menu.css);
+@import url(./blocks/burger-menu/_active/burger-menu_active.css);

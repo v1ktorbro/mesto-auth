@@ -126,6 +126,13 @@ function App() {
     setLoggedIn(true)
   }
   
+  const toggleBurgerMenu = () => {
+    const btn = document.querySelector('.burger-menu');
+    const header = document.querySelector('.header');
+    btn.classList.toggle('burger-menu_active');
+    header.classList.toggle('header_burger-menu');
+  };
+
   return (
     <>
       <Switch>
@@ -139,10 +146,11 @@ function App() {
         <CurrentUserContext.Provider value={currentUser}>
         <InitialCardsContext.Provider value={cards}>
           <Header >
-            <div className='header__info' >
-              <p className='header__email' >Email</p>
+            <div className='header__info'  >
+              <p className='header__email' >EmailEmail</p>
               <button className='header__sign-out' >Выйти</button>
             </div>
+            <span className='burger-menu' onClick={toggleBurgerMenu} />
           </Header>
           <Main 
             onEditProfile={handleEditProfileClick} 

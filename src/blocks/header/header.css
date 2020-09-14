@@ -2,6 +2,7 @@
 @import url(./__info/header__info.css);
 @import url(./__email/header__email.css);
 @import url(./__sign-out/header__sign-out.css);
+@import url(./_burger-menu/header_burger-menu.css);
 
 .header {
   max-width: 882px;
@@ -31,6 +32,7 @@
 
 @media screen and (max-width: 400px) {
   .header {
-    margin-top: 8.8vw;
+    margin-top: 40px;
+    position: relative;
   }
 }
