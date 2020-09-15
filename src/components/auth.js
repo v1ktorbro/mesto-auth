@@ -44,13 +44,13 @@ export const authorize = ({ email, password }) => {
   })
 };
 
-export const getInfoLogin = () => {
+export const getInfoLogin = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${token}`
     }
   })
   .then((res) => {

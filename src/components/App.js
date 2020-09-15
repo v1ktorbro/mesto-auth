@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from './Header.js';
 import Footer from './Footer.js';
 import Main from './Main.js';
@@ -16,6 +16,7 @@ import Login from './Login';
 import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
+import * as auth from './auth';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [infoLoginUser, setInfoLoginUser] = React.useState('');
   const [registerSuccess, setRegisterSuccess] = React.useState(false);
+  const history = useHistory();
   //информация о текущем пользователе
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -37,13 +39,14 @@ function App() {
   })
 
   React.useEffect(() => {
+    handleCheckToken();
     Promise.all([api.getInfoUser(), api.getInitialCards()])
     .then(([userData, cardsFromApi]) => {
       setCurrentUser(userData);
       setCards(cardsFromApi);
     })
     .catch(err => console.log(err))
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleAddPlaceSubmit(dataNewCard) {
     console.log(dataNewCard)
@@ -53,7 +56,7 @@ function App() {
     })
     .catch(err => console.log(err))
     .finally(closeAllPopups())
-  }
+  };
 
   function handleCardLike(card) {
     //проверяем, есть ли уже лайк на этой карточке
@@ -66,7 +69,7 @@ function App() {
       setCards(newCards)
     })
     .catch(err => console.log(err)) 
-  } 
+  };
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
@@ -75,7 +78,7 @@ function App() {
       setCards(newCards)
     })
     .catch(err => console.log(err))
-  }
+  };
 
   function handleUpdateUser(userData) {
      api.editProfile(userData)
@@ -84,7 +87,7 @@ function App() {
     })
     .catch(err => console.log(err))
     .finally(closeAllPopups()) 
-  }
+  };
 
   function handleUpdateAvatar(userData) {
      api.changeAvatar(userData)
@@ -93,7 +96,7 @@ function App() {
     })
     .catch(err => console.log(err))
     .finally(closeAllPopups()) 
-  }
+  };
 
   function handleCardClick(name, link) {
     setSelectedCard({
@@ -101,17 +104,17 @@ function App() {
       name: name,
       link: link
     })
-  }
+  };
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true)
-  }
+  };
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
-  }
+  };
   function handleAddPlaceClick () {
     setIsAddPlacePopupOpen(true)
-  }
+  };
 
   function closeAllPopups () {
     setIsEditProfilePopupOpen(false)
@@ -122,17 +125,28 @@ function App() {
       name: '',
       link: ''
     })
-  }
+  };
 
   const handleLogin = (data) => {
     setLoggedIn(true);
+    history.push('/my-profile');
     setInfoLoginUser(data);
   }
   
   const handleRegister = (data) => {
     setLoggedIn(true);
+    history.push('/my-profile')
     setInfoLoginUser(data);
     setRegisterSuccess(true);
+  };
+
+  const handleCheckToken = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      auth.getInfoLogin(token).then((getInfo) => {
+        return handleLogin(getInfo);
+      })
+    }
   };
 
   return (

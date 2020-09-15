@@ -1,15 +1,14 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import * as auth from './auth';
 import InfoTooltip from './InfoTooltip';
 
-function Login ({handleLogin}) {
+function Login ({ handleLogin }) {
   const emailRef = React.useRef('');
   const passwordRef = React.useRef('');
   const [error, setError] = React.useState(false);
   const [messageError, setMessageError] = React.useState('');
-  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,9 +26,9 @@ function Login ({handleLogin}) {
         setMessageError(res.message || res.error);
         return setError(true);
       }
-      auth.getInfoLogin().then((getInfo) => {
-        handleLogin(getInfo);
-        return history.push('/my-profile');
+      const token = res.token;
+      auth.getInfoLogin(token).then((getInfo) => {
+        return handleLogin(getInfo);
       })
     })
     .catch((err) => {

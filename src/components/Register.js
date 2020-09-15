@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import * as auth from './auth';
 import InfoTooltip from './InfoTooltip';
@@ -9,7 +9,6 @@ function Register ({ handleRegister }) {
   const passwordRef = React.useRef('');
   const [error, setError] = React.useState(false);
   const [messageError, setMessageError] = React.useState('');
-  const history = useHistory();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -25,9 +24,7 @@ function Register ({ handleRegister }) {
     auth.register(data).then((res) => {
       //если пришли данные пользователя, то отправляем их в шапку и открываем главную страницу
       if (res.data) {
-        handleRegister(res.data);
-        history.push('/my-profile');
-        return 
+        return handleRegister(res.data);
       }
       //иначе записываем ошибку и возвращаем pop-up с этой ошибкой
       setMessageError(res.error || res.message);
