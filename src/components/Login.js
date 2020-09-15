@@ -23,14 +23,14 @@ function Login ({handleLogin}) {
       password: passwordRef.current.value
     };
     auth.authorize(data).then((res) => {
-      if (res.token) {
-        auth.getInfoLogin().then((getInfo) => {
-          handleLogin(getInfo);
-          return history.push('/my-profile');
-        })
+      if(!res.token) {
+        setMessageError(res.message || res.error);
+        return setError(true);
       }
-      setMessageError(res.message || res.error);
-      return setError(true);
+      auth.getInfoLogin().then((getInfo) => {
+        handleLogin(getInfo);
+        return history.push('/my-profile');
+      })
     })
     .catch((err) => {
       setError(true);
