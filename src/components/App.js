@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Header from './Header.js'
 import Footer from './Footer.js'
 import Main from './Main.js'
@@ -19,7 +19,8 @@ import InfoTooltip from './InfoTooltip'
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [infoLoginUser, setInfoLoginUser] = React.useState('');
   const [registerSuccess, setRegisterSuccess] = React.useState(false);
   //информация о текущем пользователе
   const [currentUser, setCurrentUser] = React.useState({});
@@ -122,10 +123,17 @@ function App() {
     })
   }
 
-  function handleLogin() {
-    setLoggedIn(true)
+  const handleLogin = (data) => {
+    setLoggedIn(true);
+    setInfoLoginUser(data);
   }
   
+  const handleRegister = (data) => {
+    setLoggedIn(true);
+    setInfoLoginUser(data);
+    setRegisterSuccess(true);
+  };
+
   const toggleBurgerMenu = () => {
     const btn = document.querySelector('.burger-menu');
     const header = document.querySelector('.header');
@@ -140,14 +148,14 @@ function App() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route path='/sign-up'>
-          <Register handleLogin={handleLogin} setRegisterSuccess={setRegisterSuccess} />
+          <Register handleRegister={handleRegister} />
         </Route>
         <ProtectedRoute path='/' loggedIn={loggedIn}  Component={
         <CurrentUserContext.Provider value={currentUser}>
         <InitialCardsContext.Provider value={cards}>
           <Header >
             <div className='header__info'  >
-              <p className='header__email' >EmailEmail</p>
+              <p className='header__email' >{infoLoginUser.email}</p>
               <button className='header__sign-out' >Выйти</button>
             </div>
             <span className='burger-menu' onClick={toggleBurgerMenu} />
