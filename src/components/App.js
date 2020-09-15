@@ -148,6 +148,11 @@ function App() {
       })
     }
   };
+  
+  const signOut = () => {
+    localStorage.removeItem('token');
+    history.push('/sign-in');
+  };
 
   return (
     <>
@@ -164,7 +169,7 @@ function App() {
           <Header >
             <div className='header__info'  >
               <p className='header__email' >{infoLoginUser.email}</p>
-              <button className='header__sign-out' >Выйти</button>
+              <button className='header__sign-out' onClick={signOut} >Выйти</button>
             </div>
             <span className='burger-menu' onClick={utils.toggleBurgerMenu} />
           </Header>
