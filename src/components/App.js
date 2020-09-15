@@ -1,20 +1,21 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Header from './Header.js'
-import Footer from './Footer.js'
-import Main from './Main.js'
-import PopupWithForm from './PopupWithForm.js'
-import ImagePopup from './ImagePopup.js'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Header from './Header.js';
+import Footer from './Footer.js';
+import Main from './Main.js';
+import PopupWithForm from './PopupWithForm.js';
+import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
-import EditProfilePopup from './EditProfilePopup.js'
-import EditAvatarPopup from './EditAvatarPopup.js'
-import AddPlacePopup from './AddPlacePopup.js'
-import { CurrentUserContext } from '../contexts/CurrentUserContext.js'
-import { InitialCardsContext } from '../contexts/InitialCardsContext.js'
-import Login from './Login'
-import Register from './Register'
-import ProtectedRoute from './ProtectedRoute'
-import InfoTooltip from './InfoTooltip'
+import EditProfilePopup from './EditProfilePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
+import AddPlacePopup from './AddPlacePopup.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import { InitialCardsContext } from '../contexts/InitialCardsContext.js';
+import * as utils from '../utils/utils'
+import Login from './Login';
+import Register from './Register';
+import ProtectedRoute from './ProtectedRoute';
+import InfoTooltip from './InfoTooltip';
 
 
 function App() {
@@ -134,13 +135,6 @@ function App() {
     setRegisterSuccess(true);
   };
 
-  const toggleBurgerMenu = () => {
-    const btn = document.querySelector('.burger-menu');
-    const header = document.querySelector('.header');
-    btn.classList.toggle('burger-menu_active');
-    header.classList.toggle('header_burger-menu');
-  };
-
   return (
     <>
       <Switch>
@@ -158,7 +152,7 @@ function App() {
               <p className='header__email' >{infoLoginUser.email}</p>
               <button className='header__sign-out' >Выйти</button>
             </div>
-            <span className='burger-menu' onClick={toggleBurgerMenu} />
+            <span className='burger-menu' onClick={utils.toggleBurgerMenu} />
           </Header>
           <Main 
             onEditProfile={handleEditProfileClick} 

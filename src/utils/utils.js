@@ -1,8 +1,11 @@
-export {
-  formObject, configFormPlus, renderLoading
+export const toggleBurgerMenu = () => {
+  const btn = document.querySelector('.burger-menu');
+  const header = document.querySelector('.header');
+  btn.classList.toggle('burger-menu_active');
+  header.classList.toggle('header_burger-menu');
 };
 
-const formObject = {
+export const formObject = {
   formSelector: '.popup__container',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__input-save', // кнопка 'сохранить' | 'создать'
@@ -11,7 +14,7 @@ const formObject = {
   errorSpanClass: 'popup__input-error_active' //span с текстом ошибки
 };
 
-const configFormPlus = (popup, formObject) => {
+export const configFormPlus = (popup, formObject) => {
   const form = document.querySelector(popup);
   const inputList = form.querySelectorAll(".popup__input");
   inputList.forEach(input => input.value = "");
@@ -20,7 +23,7 @@ const configFormPlus = (popup, formObject) => {
   btnCreate.classList.add(formObject.inactiveButtonClass);
 };
 
-const renderLoading = (isLoading, popupSelector, text) => {
+export const renderLoading = (isLoading, popupSelector, text) => {
   const popup = document.querySelector(popupSelector)
   const btnSave = popup.querySelector('.popup__text-color');
   if(isLoading) {
