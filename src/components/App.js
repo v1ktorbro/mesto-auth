@@ -17,6 +17,7 @@ import Register from './Register';
 import ProtectedRoute from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
 import * as auth from './auth';
+import PageNotFound from './PageNotFound'
 
 
 function App() {
@@ -192,6 +193,9 @@ function App() {
         </CurrentUserContext.Provider>
         } />
         <Footer />
+        <Route path='*'>
+          <PageNotFound />
+        </Route>
       </Switch>
     </>
   );
