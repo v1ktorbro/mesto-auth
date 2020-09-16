@@ -136,7 +136,7 @@ function App() {
   
   const handleRegister = (data) => {
     setLoggedIn(true);
-    history.push('/my-profile')
+    history.push('/my-profile');
     setInfoLoginUser(data);
     setRegisterSuccess(true);
   };
@@ -153,6 +153,7 @@ function App() {
   const signOut = () => {
     localStorage.removeItem('token');
     history.push('/sign-in');
+    setRegisterSuccess(false);
   };
 
   return (
