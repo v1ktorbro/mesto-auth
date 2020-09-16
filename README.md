@@ -1,4 +1,8 @@
-# [Место Russia auth]()
+# [Место Russia auth](https://v1ktorbro.github.io/react-mesto-auth/index.html)
+
+## Используемый стэк :
+
+**React.js, CSS3, API fetch, БЭМ nested**
 
 ## О проеке
 
@@ -20,6 +24,6 @@
         index.css   | import всех блоков в единый файл;
 
 
-**Авторы**
+### Авторы
 * **Яндекс.Практикум** *гуру и наставник* - [Yandex.Practikum](https://praktikum.yandex.ru)
 * **Виктор Абросимов** *писарь* - [linkedin](https://www.linkedin.com/in/victor-abrosimov-631b6b1a4/)
