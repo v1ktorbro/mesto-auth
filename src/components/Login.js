@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import * as auth from './auth';
+import * as auth from '../auth';
 import InfoTooltip from './InfoTooltip';
 
 function Login ({ handleLogin }) {
