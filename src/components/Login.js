@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import * as auth from '../utils/auth';
 import InfoTooltip from './InfoTooltip';
 
 function Login ({ handleLogin }) {
@@ -21,20 +20,7 @@ function Login ({ handleLogin }) {
       email: emailRef.current.value,
       password: passwordRef.current.value
     };
-    auth.authorize(data).then((res) => {
-      if(!res.token) {
-        setMessageError(res.message || res.error);
-        return setError(true);
-      }
-      const token = res.token;
-      auth.getInfoLogin(token).then((getInfo) => {
-        return handleLogin(getInfo);
-      })
-    })
-    .catch((err) => {
-      setError(true);
-      return console.log(err);
-    })
+    handleLogin(data, setMessageError, setError);
   };
 
   return (

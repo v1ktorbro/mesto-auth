@@ -128,11 +128,23 @@ function App() {
     })
   };
 
-  const handleLogin = (data) => {
-    setLoggedIn(true);
-    history.push('/my-profile');
-    setInfoLoginUser(data);
-  }
+  const handleLogin = (data, setMessageError, setError) => {
+    auth.authorize(data).then((res) => {
+      if (!res.token) {
+        setMessageError(res.message || res.error);
+        return setError(true);
+      }
+      auth.getInfoLogin(res.token).then((getInfo) => {
+        setLoggedIn(true);
+        history.push('/my-profile');
+        return setInfoLoginUser(getInfo);
+      })
+    })
+    .catch((err) => {
+      setError(true);
+      return console.log(err);
+    })
+  };
   
   const handleRegister = (data) => {
     setLoggedIn(true);
