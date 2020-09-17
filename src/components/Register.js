@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header';
-import * as auth from '../utils/auth';
 import InfoTooltip from './InfoTooltip';
 
 function Register ({ handleRegister }) {
@@ -20,17 +19,8 @@ function Register ({ handleRegister }) {
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value
-    }
-    auth.register(data).then((res) => {
-      //если пришли данные пользователя, то отправляем их в шапку и открываем главную страницу
-      if (res.data) {
-        return handleRegister(res.data);
-      }
-      //иначе записываем ошибку и возвращаем pop-up с этой ошибкой
-      setMessageError(res.error || res.message);
-      return setError(true);
-    })
-
+    };
+    handleRegister(data, setMessageError, setError);
   };
 
   return (

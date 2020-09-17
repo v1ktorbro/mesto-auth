@@ -146,18 +146,26 @@ function App() {
     })
   };
   
-  const handleRegister = (data) => {
-    setLoggedIn(true);
-    history.push('/my-profile');
-    setInfoLoginUser(data);
-    setRegisterSuccess(true);
+  const handleRegister = (data, setMessageError, setError) => {
+    auth.register(data).then((res) => {
+      if (res.data) {
+        setLoggedIn(true);
+        history.push('/my-profile');
+        setInfoLoginUser(res.data);
+        return setRegisterSuccess(true);
+      }
+      setMessageError(res.error || res.message);
+      return setError(true);
+    }) 
   };
 
   const handleCheckToken = () => {
     const token = localStorage.getItem('token');
     if (token) {
       auth.getInfoLogin(token).then((getInfo) => {
-        return handleLogin(getInfo);
+        setLoggedIn(true);
+        history.push('/my-profile');
+        return setInfoLoginUser(getInfo);
       })
     }
   };
