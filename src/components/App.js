@@ -69,7 +69,7 @@ function App() {
       // Обновляем стейт
       setCards(newCards)
     })
-    .catch(err => console.log(err)) 
+    .catch(err => console.log(err))
   };
 
   function handleCardDelete(card) {
@@ -87,7 +87,7 @@ function App() {
       setCurrentUser(data)
     })
     .catch(err => console.log(err))
-    .finally(closeAllPopups()) 
+    .finally(closeAllPopups())
   };
 
   function handleUpdateAvatar(userData) {
@@ -96,7 +96,7 @@ function App() {
       setCurrentUser(data)
     })
     .catch(err => console.log(err))
-    .finally(closeAllPopups()) 
+    .finally(closeAllPopups())
   };
 
   function handleCardClick(name, link) {
@@ -145,7 +145,7 @@ function App() {
       return console.log(err);
     })
   };
-  
+
   const handleRegister = (data, setMessageError, setError) => {
     auth.register(data).then((res) => {
       if (res.data) {
@@ -156,7 +156,7 @@ function App() {
       }
       setMessageError(res.error || res.message);
       return setError(true);
-    }) 
+    })
   };
 
   const handleCheckToken = () => {
@@ -169,7 +169,7 @@ function App() {
       })
     }
   };
-  
+
   const signOut = () => {
     localStorage.removeItem('token');
     history.push('/sign-in');
@@ -195,10 +195,10 @@ function App() {
             </div>
             <span className='burger-menu' onClick={utils.toggleBurgerMenu} />
           </Header>
-          <Main 
-            onEditProfile={handleEditProfileClick} 
-            onAddPlace={handleAddPlaceClick} 
-            onEditAvatar={handleEditAvatarClick} 
+          <Main
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
             onCardClick={handleCardClick}
             cards={cards}
             onCardLike={handleCardLike}
