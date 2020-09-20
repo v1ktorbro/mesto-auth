@@ -38,7 +38,7 @@ function Register({ handleRegister }) {
             <div className="login__block-signup">
               <p className="login__issue">
                 Уже зарегистрированы?
-                <Link to="sign-up" className="login__signup login__signup_form"> Войти</Link>
+                <Link to="sign-in" className="login__signup login__signup_form"> Войти</Link>
               </p>
             </div>
           </form>
