@@ -57,16 +57,25 @@ function App() {
         return setInfoLoginUser(getInfo);
       });
     }
+    return token
   };
 
-  React.useEffect(() => {
-    handleCheckToken();
+  const initialData = () => {
     Promise.all([api.getInfoUser(), api.getInitialCards()]).then(([userData, cardsFromApi]) => {
       setCurrentUser(userData);
       setCards(cardsFromApi);
     }).catch((err) => {
+      if (err.statusCode === 401) {
+        return console.log(' иди нахуй мудак')
+      }
       return console.log(err);
     });
+  }
+
+  React.useEffect(() => {
+    if(handleCheckToken()) {
+      initialData();
+    }
   // eslint-disable-next-line
   }, []);
 
@@ -81,8 +90,8 @@ function App() {
 
   function handleCardLike(card) {
     //  проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((like) => {
-      return like._id === currentUser._id;
+    const isLiked = card.likes.some((likeId) => {
+      return likeId === currentUser._id;
     });
     (!isLiked ? api.putLikeCard(card._id) : api.deleteLikeCard(card._id)).then((newCard) => {
       // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
@@ -152,6 +161,9 @@ function App() {
         setLoggedIn(true);
         history.push('/my-profile');
         return setInfoLoginUser(getInfo);
+      }).then((res) => {
+        console.log(initialData());
+        initialData();
       });
     }).catch((err) => {
       setError(true);
@@ -162,9 +174,7 @@ function App() {
   const handleRegister = (data, setMessageError, setError) => {
     auth.register(data).then((res) => {
       if (res.data) {
-        setLoggedIn(true);
-        history.push('/my-profile');
-        setInfoLoginUser(res.data);
+        history.push('/sign-in');
         return setRegisterSuccess(true);
       }
       setMessageError(res.error || res.message);
@@ -182,7 +192,7 @@ function App() {
     <>
       <Switch>
         <Route path="/sign-in">
-          <Login handleLogin={handleLogin} />
+          <Login handleLogin={handleLogin} registerSuccess={registerSuccess} />
         </Route>
         <Route path="/sign-up">
           <Register handleRegister={handleRegister} />
@@ -226,7 +236,6 @@ function App() {
                 />
                 <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-                { registerSuccess && <InfoTooltip success /> }
               </InitialCardsContext.Provider>
             </CurrentUserContext.Provider>
         )}

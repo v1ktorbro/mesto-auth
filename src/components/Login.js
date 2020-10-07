@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 import InfoTooltip from './InfoTooltip';
 
-function Login({ handleLogin }) {
+function Login({ handleLogin, registerSuccess }) {
   const emailRef = React.useRef('');
   const passwordRef = React.useRef('');
   const [error, setError] = React.useState(false);
@@ -44,6 +44,7 @@ function Login({ handleLogin }) {
           </form>
         </section>
         { error && <InfoTooltip success={false} message={messageError} /> }
+        { registerSuccess && <InfoTooltip success /> }
       </main>
     </>
   );

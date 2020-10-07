@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'http://localhost:4000';
 
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -37,7 +37,6 @@ export const authorize = ({ email, password }) => {
       localStorage.setItem('token', data.token);
       return data;
     }
-      return data
   })
   .catch((err) => {
     return console.log(err)
@@ -56,7 +55,7 @@ export const getInfoLogin = (token) => {
   .then((res) => {
     return res.json()
   })
-  .then(({ data }) => {
+  .then((data) => {
     return (data)
   })
   .catch((err) => {

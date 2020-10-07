@@ -4,10 +4,14 @@ class Api {
     this.headers = headers
   }
   getInfoUser() {
+    this._updateToken();
     return fetch(`${this.url}users/me`, {headers: this.headers})
     .then((res) => {
       if(res.ok) {
-        return res.json()
+        return res.json();
+      }
+      if (res.status == 401) {
+        return localStorage.removeItem('token');
       }
       return Promise.reject(`Что-то пошло не так: ошибка ${res.status}`)
     })
@@ -60,7 +64,7 @@ class Api {
     })
   }
   putLikeCard(cardId) {
-      return fetch(`${this.url}cards/likes/${cardId}`, {
+      return fetch(`${this.url}cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this.headers
       })
@@ -72,7 +76,7 @@ class Api {
       })
   }
   deleteLikeCard(cardId) {
-    return fetch(`${this.url}cards/likes/${cardId}`, {
+    return fetch(`${this.url}cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this.headers
     })
@@ -98,12 +102,22 @@ class Api {
       return Promise.reject(`Ошибка отправки данных на сервер: проблема ${res.status}`)
     })
   }
+  _updateToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      localStorage.setItem('token', token);
+      this.headers = {
+        Authorization: token,
+        'Content-Type': 'application/json'
+      }
+    }
+  }
 }
 
 const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-12/',
+  url: 'http://localhost:4000/',
   headers: {
-    Authorization: '9bd0d0c4-e4a3-422a-9469-bb5b72a2dcf0',
+    Authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json'
   }
 })
