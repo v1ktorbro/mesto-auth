@@ -65,9 +65,6 @@ function App() {
       setCurrentUser(userData);
       setCards(cardsFromApi);
     }).catch((err) => {
-      if (err.statusCode === 401) {
-        return console.log(' иди нахуй мудак')
-      }
       return console.log(err);
     });
   }
