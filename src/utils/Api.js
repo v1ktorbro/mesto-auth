@@ -10,7 +10,7 @@ class Api {
       if(res.ok) {
         return res.json();
       }
-      if (res.status == 401) {
+      if (res.status === 401) {
         return localStorage.removeItem('token');
       }
       return Promise.reject(`Что-то пошло не так: ошибка ${res.status}`)
@@ -115,7 +115,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:4000/',
+  url: 'https://api.v1ktorbro.students.nomoreparties.co/',
   headers: {
     Authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json'

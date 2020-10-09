@@ -1,16 +1,16 @@
-# [Место Russia auth](https://v1ktorbro.github.io/react-mesto-auth/index.html)
+# [Место Russia auth](https://v1ktorbro.students.nomoreparties.co/)
 
 ## Используемый стэк :
 
 **React.js, CSS3, API fetch, БЭМ nested**
 
 ## Бэкэнд
-
+Все fetch запросы отправляются на поддомен https://api.v1ktorbro.students.nomoreparties.co
 Ознакомиться с бэкэндом можно [тут](https://github.com/v1ktorbro/react-mesto-api-full)
 
 ## О проеке
 
-Проект ["Mesto Russia auth"](https://v1ktorbro.github.io/react-mesto-auth/index.html) есть прототип проекта ["React Mesto Russia"](https://v1ktorbro.github.io/mesto-react/index.html), главное отличие которого является - авторизация и регистрация посетителей сайта.
+Проект ["Mesto Russia auth"](https://v1ktorbro.students.nomoreparties.co/) есть прототип проекта ["React Mesto Russia"](https://v1ktorbro.github.io/mesto-react/index.html), главное отличие которого является - авторизация и регистрация посетителей сайта.
 
 В приложении есть возможность поменять информацю о пользователе, изменить аватар, разместить свою любимую карточку, а так же удалить ее.
 
