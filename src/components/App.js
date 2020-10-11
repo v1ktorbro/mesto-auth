@@ -169,7 +169,7 @@ function App() {
 
   const handleRegister = (data, setMessageError, setError) => {
     auth.register(data).then((res) => {
-      if (res.data) {
+      if (res) {
         history.push('/sign-in');
         return setRegisterSuccess(true);
       }
