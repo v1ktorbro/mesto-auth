@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from './Header';
@@ -56,7 +54,7 @@ function App() {
         return setInfoLoginUser(getInfo);
       });
     }
-    return token
+    return token;
   };
 
   const initialData = () => {
@@ -72,7 +70,6 @@ function App() {
     if(handleCheckToken()) {
       initialData();
     }
-  // eslint-disable-next-line
   }, []);
 
   function handleAddPlaceSubmit(dataNewCard) {
