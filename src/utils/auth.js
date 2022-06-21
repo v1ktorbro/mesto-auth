@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.v1ktorbro.students.nomoreparties.co';
+export const BASE_URL = 'http://localhost:5001';
 
 export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -13,10 +13,10 @@ export const register = ({ email, password }) => {
     return res.json();
   })
   .then((res) => {
-    return res
+    return res;
   })
   .catch((err) => {
-    return console.log(err)
+    return console.log(err);
   })
 };
 
