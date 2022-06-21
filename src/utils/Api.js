@@ -5,7 +5,7 @@ class Api {
   }
   getInfoUser() {
     this._updateToken();
-    return fetch(`${this.url}users/me`, {headers: this.headers})
+    return fetch(`${this.url}/users/me`, {headers: this.headers})
     .then((res) => {
       if(res.ok) {
         return res.json();
@@ -17,7 +17,7 @@ class Api {
     })
   }
   getInitialCards() {
-    return fetch(`${this.url}cards`, {headers: this.headers})
+    return fetch(`${this.url}/cards`, {headers: this.headers})
     .then(res => {
       if(res.ok) {
         return res.json()
@@ -26,7 +26,7 @@ class Api {
     })
   }
   editProfile(data) {
-    return fetch(`${this.url}users/me`, {
+    return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
@@ -42,7 +42,7 @@ class Api {
     })
   }
   addCard(data) {
-    return fetch(`${this.url}cards`, {
+    return fetch(`${this.url}/cards`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
@@ -58,13 +58,13 @@ class Api {
     })
   }
   deleteCard(cardId) {
-      return fetch(`${this.url}cards/${cardId}`, {
+      return fetch(`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this.headers
     })
   }
   putLikeCard(cardId) {
-      return fetch(`${this.url}cards/${cardId}/likes`, {
+      return fetch(`${this.url}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this.headers
       })
@@ -76,7 +76,7 @@ class Api {
       })
   }
   deleteLikeCard(cardId) {
-    return fetch(`${this.url}cards/${cardId}/likes`, {
+    return fetch(`${this.url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this.headers
     })
@@ -88,7 +88,7 @@ class Api {
     })
   }
   changeAvatar(data) {
-    return fetch(`${this.url}users/me/avatar`, {
+    return fetch(`${this.url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
@@ -115,7 +115,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://api.v1ktorbro.students.nomoreparties.co/',
+  url: 'http://localhost:5001',
   headers: {
     Authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json'
