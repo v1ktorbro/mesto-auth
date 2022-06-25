@@ -229,11 +229,11 @@ function App() {
                 />
                 <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+                <Footer />
               </InitialCardsContext.Provider>
             </CurrentUserContext.Provider>
         )}
         />
-        <Footer />
         <Route path="*">
           <PageNotFound />
         </Route>
