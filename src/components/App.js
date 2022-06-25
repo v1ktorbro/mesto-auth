@@ -212,7 +212,6 @@ function App() {
                   onCardLike={handleCardLike}
                   onCardDelete={handleCardDelete}
                 />
-                <Footer />
                 <EditProfilePopup
                   isOpen={isEditProfilePopupOpen}
                   onClose={closeAllPopups}
@@ -238,6 +237,7 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 }
