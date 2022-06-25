@@ -212,6 +212,7 @@ function App() {
                   onCardLike={handleCardLike}
                   onCardDelete={handleCardDelete}
                 />
+                <Footer />
                 <EditProfilePopup
                   isOpen={isEditProfilePopupOpen}
                   onClose={closeAllPopups}
@@ -229,7 +230,6 @@ function App() {
                 />
                 <PopupWithForm name="delete" title="Вы уверены?" inputSignature="Да" />
                 <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-                <Footer />
               </InitialCardsContext.Provider>
             </CurrentUserContext.Provider>
         )}
