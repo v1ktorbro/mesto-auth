@@ -95,7 +95,7 @@ class Api {
         avatar: data.avatar
       })
     })
-     .then(res => {
+    .then(res => {
       if(res.ok) {
         return res.json()
       }
@@ -115,7 +115,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:5001',
+  url: 'https://mesto-auth.abrosimov.site/api',
   headers: {
     Authorization: localStorage.getItem('token'),
     'Content-Type': 'application/json'
