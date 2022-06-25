@@ -1,36 +1,31 @@
-# [Место Russia auth](https://v1ktorbro.students.nomoreparties.co/)
+# [Mesto-auth](https://mesto-auth.abrosimov.site)
+**[ Base URL: mesto-auth.abrosimov.site ]**
 
-## Используемый стэк :
+## Инструменты:
 
-**React.js, CSS3, API fetch, БЭМ nested**
-
-## Бэкэнд
-Все fetch запросы отправляются на поддомен https://api.v1ktorbro.students.nomoreparties.co
-Ознакомиться с бэкэндом можно [тут](https://github.com/v1ktorbro/react-mesto-api-full)
-
+**REACT, JS, GIT, CSS, HTML, FIGMA, NGINX, UBUNTU.**
 ## О проеке
 
-Проект ["Mesto Russia auth"](https://v1ktorbro.students.nomoreparties.co/) есть прототип проекта ["React Mesto Russia"](https://v1ktorbro.github.io/mesto-react/index.html), главное отличие которого является - авторизация и регистрация посетителей сайта.
+*Mesto-auth* является обновленной версией проекта [Mesto](https://github.com/v1ktorbro/mesto-react). В приложении доступен функционал из предыдущей работы. А так же добавлено:
 
-В приложении есть возможность поменять информацю о пользователе, изменить аватар, разместить свою любимую карточку, а так же удалить ее.
+* Регистрация;
+* Авторизация;
+* Приватность страницы (возможность попасть на страницу галлереи только после аунтефикации юзера);
+* Бэкэнд, [подробнее](https://github.com/v1ktorbro/api-mesto-auth).
 
-Шапка сайта при разрешении <400px реализована в стиле "бургер меню"
+Перед просмотром контента страницы, гостю необходимо пройти регистрацию*.
 
-### Структура проекта
+**если пользователь ранее авторизовывался, то на крайнем посещении в localStorage был записан JWT и дополнительных действий от юзера не потребуется.*
 
-        blocks/     | CSS для бллоков. Проект оформлен по структуре БЭМ nested;
-        components/ | компоненты страницы;
-        contexts/   | контексты с информацией о текущем пользователе и текущими карточками;
-        fonts/      | шрифт Inter;
-        images/     | svg изображения размещенные на странице;
-        utils/      | находятся нужные переменные, которые отделены от основного кода;
-        vendor/     | normalize.css;
-        auth.js     | в файле находятся fetch запросы авторизации, регистрации и аунтификации юзера;
-        index.css   | import всех блоков в единый файл.
+Удалить возможно только свои ранее созданные картинки.
 
 
-### Авторы
+## Хостинг
 
-* **Яндекс.Практикум** *гуру и наставник* - [Yandex.Practikum](https://praktikum.yandex.ru);
+Проект расположен на VPS. ОС: ubuntu, веб-сервер: nginx.
 
-* **Виктор Абросимов** *писарь* - [linkedin](https://www.linkedin.com/in/victor-abrosimov-631b6b1a4/).
+Посмотреть страницу можно по домену [mesto-auth.abrosimov.site](https://mesto-auth.abrosimov.site). 
+
+## Бэкэнд
+
+Сохранение карточек, запрос бд, регистрация, авторизация и аунтификация пользователей происходит на своем бэкэнде,  [подробнее](https://github.com/v1ktorbro/api-mesto-auth).
