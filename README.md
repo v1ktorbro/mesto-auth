@@ -3,7 +3,7 @@
 
 ## Инструменты:
 
-**REACT, JS, GIT, CSS, HTML, FIGMA, NGINX, UBUNTU.**
+**REACT, JS, GIT, CSS, HTML, NGINX, UBUNTU.**
 
 ## О проекте
 
